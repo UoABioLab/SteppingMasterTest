@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useGameState } from '../composables/useGameState'
+import { t } from '../Language/language.js'
 
 const { gameState, startGame } = useGameState()
 const selectedDifficulty = ref('medium')
@@ -10,47 +11,52 @@ const selectDifficulty = (difficulty) => {
 }
 
 const startGameWithDifficulty = () => {
-  if (!gameState.playerName.trim()) {
-    alert('Please enter your name!')
-    return
-  }
+  // if (!gameState.playerName.trim()) {
+  //   alert('Please enter your name!')
+  //   return
+  // }
   gameState.difficulty = selectedDifficulty.value
   startGame()
 }
 
 const exitToMain = () => {
-  window.location.href = 'https://uoabiolab.github.io/GameIndex/'
+  const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  const mainPage = isLocal
+    ? '/GameIndex/index.html'  // 本地路径
+    : 'https://uoabiolab.github.io/GameIndex/';  // GitHub Pages 路径
+
+  window.location.href = mainPage;
 }
 </script>
 
 <template>
   <div class="difficulty-select">
-    <h1>Step Master</h1>
-    <div class="player-input">
+    <h1>{{ t('title') }}</h1>
+    <!-- <div class="player-input">
       <input 
         type="text" 
         v-model="gameState.playerName" 
         placeholder="Enter your name" 
       />
-    </div>
+    </div> -->
     <div class="difficulty-options">
-      <h2>Select Difficulty</h2>
+      <h2>{{t('selectDifficulty')}}</h2>
       <div class="buttons">
         <button 
           type="button"
           @click="selectDifficulty('easy')"
           :class="{ active: selectedDifficulty === 'easy' }"
-        >Easy</button>
+        >{{t('easy')}}</button>
         <button 
           type="button"
           @click="selectDifficulty('medium')"
           :class="{ active: selectedDifficulty === 'medium' }"
-        >Medium</button>
+        >{{t('medium')}}</button>
         <button 
           type="button"
           @click="selectDifficulty('hard')"
           :class="{ active: selectedDifficulty === 'hard' }"
-        >Hard</button>
+        >{{t('hard')}}</button>
       </div>
     </div>
     <div class="start-game">
@@ -58,14 +64,14 @@ const exitToMain = () => {
         type="button"
         class="start-button"
         @click="startGameWithDifficulty"
-      >Start Game</button>
+      >{{t('start')}}</button>
     </div>
     <div class="exit-game">
       <button 
         type="button"
         class="exit-button"
         @click="exitToMain"
-      >Exit to Main Menu</button>
+      >{{t('back')}}</button>
     </div>
   </div>
 </template>
@@ -75,34 +81,34 @@ const exitToMain = () => {
   text-align: center;
   color: white;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.7);
+  /* background: rgb(0, 0, 0); */
   border-radius: 1rem;
   min-width: 400px;
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-bottom: 2rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   margin: 1rem 0;
 }
 
-.player-input {
+/* .player-input {
   margin-bottom: 2rem;
-}
+} */
 
-input {
+/* input {
   padding: 0.5rem 1rem;
-  font-size: 1.2rem;
+  font-size: 2.2rem;
   border-radius: 4px;
   border: none;
   width: 200px;
   margin-bottom: 1rem;
-}
+} */
 
 .difficulty-options {
   margin-bottom: 2rem;
@@ -117,7 +123,8 @@ input {
 
 button {
   padding: 1rem 2rem;
-  font-size: 1.2rem;
+  font-size: 2rem;
+  font-weight: bold;
   border-radius: 8px;
   border: 2px solid #646cff;
   background-color: transparent;
@@ -136,7 +143,7 @@ button.active {
 }
 
 .start-button {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   padding: 1.2rem 3rem;
   background-color: #00ff00;
   border-color: #00ff00;
@@ -154,8 +161,8 @@ button.active {
 }
 
 .exit-button {
-  font-size: 1.2rem;
-  padding: 0.8rem 2rem;
+  font-size: 2.5rem;
+  padding: 1.2rem 3rem;
   background-color: #ff4444;
   border-color: #ff4444;
   color: white;

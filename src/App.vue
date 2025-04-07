@@ -43,7 +43,7 @@ const gameStarted = ref(false)
 
 // 背景样式
 const containerStyle = ref({
-  backgroundImage: 'url(/SteppingMaster/resources/background.jpg)',
+  backgroundImage: 'url(./resources/background.jpg)',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat'
@@ -104,7 +104,7 @@ const resetGame = () => {
 // 组件挂载时尝试预加载音频
 onMounted(() => {
   // 预加载背景音乐，但不自动播放
-  const bgMusic = new Audio('/resources/Background_music.mp3')
+  const bgMusic = new Audio('resources/Background_music.mp3')
   bgMusic.load()
 })
 </script>

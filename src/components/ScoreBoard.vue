@@ -1,5 +1,6 @@
 <script setup>
 import { useGameState } from '../composables/useGameState'
+import { t } from '../Language/language.js'
 
 const { score, health, gameState } = useGameState()
 </script>
@@ -7,19 +8,19 @@ const { score, health, gameState } = useGameState()
 <template>
   <div class="score-board">
     <div class="player-info">
-      <span class="label">Player:</span>
+      <span class="label">{{t('player')}}:</span>
       <span class="value">{{ gameState.playerName }}</span>
     </div>
     
     <div class="score-container">
       <div class="score">
-        <span class="label">Score:</span>
+        <span class="label">{{t('score')}}:</span>
         <span class="value highlight">{{ score }}</span>
       </div>
     </div>
     
     <div class="health-container">
-      <span class="label">Health:</span>
+      <span class="label">{{t('lives')}}:</span>
       <div class="hearts">
         <span v-for="n in 3" :key="n" class="heart" :class="{ empty: n > health }">
           {{ n <= health ? '❤️' : '🖤' }}
@@ -28,8 +29,8 @@ const { score, health, gameState } = useGameState()
     </div>
 
     <div class="difficulty">
-      <span class="label">Mode:</span>
-      <span class="value" :class="gameState.difficulty">{{ gameState.difficulty }}</span>
+      <span class="label">{{t('mode')}}:</span>
+      <span class="value" :class="gameState.difficulty">{{ t(gameState.difficulty) }}</span>
     </div>
   </div>
 </template>
@@ -40,16 +41,16 @@ const { score, health, gameState } = useGameState()
   top: 20px;
   right: 20px;
   background: rgba(0, 0, 0, 0.7);
-  padding: 1rem;
+  padding: 1.5rem 2rem;
   border-radius: 8px;
   color: white;
-  font-size: 1rem;
-  min-width: 200px;
+  font-size: 2rem;
+  min-width: 280px;
   border: none;
 }
 
 .label {
-  color: #888;
+  color: #fafafa;
   margin-right: 0.5rem;
 }
 
@@ -59,11 +60,15 @@ const { score, health, gameState } = useGameState()
 
 .highlight {
   color: #00ff00;
-  font-size: 1.4rem;
+  font-size: 2rem;
 }
 
 .player-info, .score-container, .health-container, .difficulty {
   margin: 0.8rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 
 .score-container {

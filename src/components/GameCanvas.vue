@@ -1,8 +1,29 @@
+<template>
+  <div class="game-canvas-container">
+    <video 
+      ref="videoRef"
+      width="640"
+      height="480"
+      autoplay
+      playsinline
+      muted
+      style="display: none"
+    ></video>
+    <canvas 
+      ref="canvasRef"
+      :width="gameSettings.canvas.width"
+      :height="gameSettings.canvas.height"
+      class="game-canvas"
+    ></canvas>
+  </div>
+</template>
+
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { gameSettings } from '../config/gameSettings'
 import { useGameState } from '../composables/useGameState'
 import { useAudio } from '../composables/useAudio'
+import {t} from '../Language/language.js'
 
 const canvasRef = ref(null)
 const videoRef = ref(null)
@@ -143,14 +164,14 @@ const loadImages = () => {
   rightFootImg.onload = () => onImageLoad('rightFoot')
 
   // 置图片源
-  leftArrow.src = '/SteppingMaster/resources/right_arrow.png'
-  rightArrow.src = '/SteppingMaster/resources/left_arrow.png'
-  leftArrowWrong.src = '/SteppingMaster/resources/right_arrow_wrong.png'
-  rightArrowWrong.src = '/SteppingMaster/resources/left_arrow_wrong.png'
-  leftArrowCorrect.src = '/SteppingMaster/resources/right_arrow_correct.png'
-  rightArrowCorrect.src = '/SteppingMaster/resources/left_arrow_correct.png'
-  leftFootImg.src = '/SteppingMaster/resources/left_foot.png'
-  rightFootImg.src = '/SteppingMaster/resources/right_foot.png'
+  leftArrow.src = './resources/right_arrow.png'
+  rightArrow.src = './resources/left_arrow.png'
+  leftArrowWrong.src = './resources/right_arrow_wrong.png'
+  rightArrowWrong.src = './resources/left_arrow_wrong.png'
+  leftArrowCorrect.src = './resources/right_arrow_correct.png'
+  rightArrowCorrect.src = './resources/left_arrow_correct.png'
+  leftFootImg.src = './resources/left_foot.png'
+  rightFootImg.src = './resources/right_foot.png'
 }
 
 // 修改箭头更新函数
@@ -456,26 +477,6 @@ defineExpose({
   checkArrowHit
 })
 </script>
-
-<template>
-  <div class="game-canvas-container">
-    <video 
-      ref="videoRef"
-      width="640"
-      height="480"
-      autoplay
-      playsinline
-      muted
-      style="display: none"
-    ></video>
-    <canvas 
-      ref="canvasRef"
-      :width="gameSettings.canvas.width"
-      :height="gameSettings.canvas.height"
-      class="game-canvas"
-    ></canvas>
-  </div>
-</template>
 
 <style scoped>
 .game-canvas {

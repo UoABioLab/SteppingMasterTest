@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue()],
-  base: '/SteppingMaster/',
+  base: './',
   server: {
     port: 9204,
     host: true

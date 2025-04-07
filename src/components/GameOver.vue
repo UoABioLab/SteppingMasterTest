@@ -1,4 +1,5 @@
 <script setup>
+import{t} from '../Language/language.js'
 import { useGameState } from '../composables/useGameState'
 
 const { score, gameState, resetGame } = useGameState()
@@ -18,16 +19,16 @@ const backToMenu = () => {
   <div class="game-over" v-if="gameState.gameOver">
     <h2>Game Over</h2>
     <div class="score-info">
-      <div class="final-score">Final Score: {{ score }}</div>
-      <div class="high-score">High Score: {{ gameState.highScore }}</div>
+      <div class="final-score">{{ t('finalScore') }}: {{ score }}</div>
+      <div class="high-score">{{ t('highScore') }}: {{ gameState.highScore }}</div>
     </div>
-    <div class="player-stats">
-      <div>Player: {{ gameState.playerName }}</div>
+    <!-- <div class="player-stats">
+      <div>{{ t('player') }}: {{ gameState.playerName }}</div>
       <div>Difficulty: {{ gameState.difficulty }}</div>
-    </div>
+    </div> -->
     <div class="buttons">
-      <button @click="playAgain" class="play-again">Play Again</button>
-      <button @click="backToMenu" class="back-menu">Back to Menu</button>
+      <button @click="playAgain" class="play-again">{{ t('retry') }}</button>
+      <button @click="backToMenu" class="back-menu">{{ t('back') }}</button>
     </div>
   </div>
 </template>
@@ -38,34 +39,36 @@ const backToMenu = () => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.9);
+  background: rgb(0, 0, 0);
   padding: 2rem;
   border-radius: 1rem;
   text-align: center;
   color: white;
-  min-width: 300px;
-  border: 2px solid #646cff;
+  min-width: 400px;
+  min-height: 400px;
+  border: 4px solid #ff6464;
 }
 
 h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
+  font-size: 4rem;
+  margin-bottom: 1rem;
   color: #ff4444;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .score-info {
+  margin-bottom: 4rem; /* 可调整为 2rem ~ 3rem */
   margin-bottom: 1.5rem;
 }
 
 .final-score {
-  font-size: 1.8rem;
+  font-size: 2.8rem;
   color: #00ff00;
   margin-bottom: 0.5rem;
 }
 
 .high-score {
-  font-size: 1.4rem;
+  font-size: 2.8rem;
   color: #ffff00;
 }
 
@@ -86,7 +89,7 @@ h2 {
 
 .play-again, .back-menu {
   padding: 1rem 2rem;
-  font-size: 1.2rem;
+  font-size: 2rem;
   border-radius: 8px;
   border: 2px solid #646cff;
   background-color: transparent;

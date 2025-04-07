@@ -17,8 +17,8 @@ let camera = null
 // 添加脚的图片加载
 const leftFootImg = new Image()
 const rightFootImg = new Image()
-leftFootImg.src = '/resources/left_foot.png'
-rightFootImg.src = '/resources/right_foot.png'
+leftFootImg.src = './resources/left_foot.png'
+rightFootImg.src = './resources/right_foot.png'
 
 // 初始化姿势检测器
 const initPose = async () => {
@@ -42,7 +42,7 @@ const initPose = async () => {
     
     pose = new window.Pose({
       locateFile: (file) => {
-        return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5/${file}`
       }
     })
 

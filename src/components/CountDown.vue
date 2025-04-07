@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useGameState } from '../composables/useGameState'
 import { useAudio } from '../composables/useAudio'
+import { t } from '../Language/language.js'
 
 const props = defineProps({
   onComplete: Function
@@ -36,7 +37,7 @@ onMounted(() => {
 <template>
   <div v-if="isVisible" class="countdown">
     <div class="count">{{ count }}</div>
-    <div class="text">Game Starting...</div>
+    <div class="text">{{ t('calibrate') }}...</div>
   </div>
 </template>
 

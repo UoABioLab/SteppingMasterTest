@@ -9,8 +9,8 @@ let camera = null
 // 加载脚的图片
 const leftFootImg = new Image()
 const rightFootImg = new Image()
-leftFootImg.src = '/resources/left_foot.png'
-rightFootImg.src = '/resources/right_foot.png'
+leftFootImg.src = './resources/left_foot.png'
+rightFootImg.src = './resources/right_foot.png'
 
 // 初始化姿势检测器
 const initPose = async () => {
